@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
+    <title>L'Oréal Beauty Advisor</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -19,7 +19,14 @@
     <div class="page-wrapper">
       <!------- Header / Branding ------->
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <div class="brand-badge">L</div>
+        <div>
+          <p class="eyebrow">L'Oréal Paris</p>
+          <h1 class="site-title">Beauty Advisor</h1>
+          <p class="site-subtitle">
+            Discover skincare, makeup, and routine ideas with a polished glow.
+          </p>
+        </div>
       </header>
 
       <!------- Chat Area ------->
@@ -45,11 +52,56 @@
             </button>
           </form>
         </section>
+
+        <section class="luxury-panel" aria-label="Recommended beauty picks">
+          <div class="panel-header">
+            <p class="panel-label">Curated for you</p>
+            <h2>Luxury beauty picks</h2>
+          </div>
+
+          <div class="talking-points" aria-label="Talking points">
+            <div class="talking-point">
+              <span class="point-icon">✦</span>
+              <p>Glow-boosting skincare for a fresh morning routine.</p>
+            </div>
+            <div class="talking-point">
+              <span class="point-icon">✦</span>
+              <p>Soft makeup looks that feel polished and effortless.</p>
+            </div>
+            <div class="talking-point">
+              <span class="point-icon">✦</span>
+              <p>Haircare ideas for smooth, healthy-looking shine.</p>
+            </div>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-badge">Glow</div>
+              <h3>Velvet Dew Serum</h3>
+              <p>Hydrating finish with a radiant, glass-skin look.</p>
+              <span class="product-price">$48</span>
+            </article>
+
+            <article class="product-card">
+              <div class="product-badge">Repair</div>
+              <h3>Night Renewal Cream</h3>
+              <p>Softens texture and supports your overnight ritual.</p>
+              <span class="product-price">$62</span>
+            </article>
+
+            <article class="product-card">
+              <div class="product-badge">Color</div>
+              <h3>Rouge Luxe Lip</h3>
+              <p>Rich pigment with a satin finish for everyday elegance.</p>
+              <span class="product-price">$34</span>
+            </article>
+          </div>
+        </section>
       </main>
 
       <!------- Footer Links ------->
       <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
+        <p>&copy; 2025 L'Oréal Paris. Beauty for everyone.</p>
         <nav>
           <!-- These URLs are placeholders -->
           <a href="#">Privacy Policy</a>
@@ -59,6 +111,7 @@
       </footer>
     </div>
 
+    <script src="chatbot-config.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
