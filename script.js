@@ -14,41 +14,12 @@ function addMessage(text, sender) {
 function isRelevantTopic(userText) {
   const lowerText = userText.toLowerCase();
   const mentionsLoreal = /(l['’]?oréal|loreal|loreal paris)/i.test(userText);
-  const hasCareerKeyword =
-    /(career|careers|interview|leadership|growth|confidence|professional|workplace|team|goal|ambition|future|development|success|reflective|motivation|challenge|strength|weakness)/i.test(
-      lowerText,
-    );
-  const hasRecruiterContext =
-    /(recruiter|job|role|opportunity|company|culture|vision|values|innovation|brand|people)/i.test(
-      lowerText,
-    );
-  const isReflectiveQuestion =
-    /(why|how|what|feel|confidence|meaning|future|growth|challenge|story|experience|learn|improve)/i.test(
+  const beautyTopic =
+    /(beauty|beauty product|beauty routine|routine|skincare|makeup|haircare|hair|serum|moisturizer|cleanser|foundation|mascara|eyeshadow|lipstick|lip|blush|shampoo|conditioner|skin)/i.test(
       lowerText,
     );
 
-  return (
-    (mentionsLoreal && (hasCareerKeyword || hasRecruiterContext)) ||
-    (hasCareerKeyword && isReflectiveQuestion)
-  );
-}
-
-function getReflectiveReply(userText) {
-  const lowerText = userText.toLowerCase();
-  const isReflectiveQuestion =
-    /(why|how|what|feel|confidence|meaning|future|growth|challenge|story|experience|learn|improve)/i.test(
-      lowerText,
-    );
-  const isCareerContext =
-    /(career|careers|interview|leadership|growth|professional|workplace|team|goal|ambition|future|development|success|challenge|strength|weakness|motivation)/i.test(
-      lowerText,
-    );
-
-  if (isReflectiveQuestion && isCareerContext) {
-    return "A strong answer should show self-awareness, growth, and purpose. Focus on a real experience, explain what you learned, and connect it to how you would contribute to L'Oréal with confidence and curiosity.";
-  }
-
-  return "";
+  return mentionsLoreal || beautyTopic;
 }
 
 function getLocalReply(userText) {
@@ -81,6 +52,7 @@ async function sendToWorker(userText) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      model: chatbotConfig.model,
       messages: messages,
     }),
   });
@@ -115,13 +87,6 @@ chatForm.addEventListener("submit", async (e) => {
     const refusalReply = chatbotConfig.refusalMessage;
     addMessage(refusalReply, "ai");
     conversationHistory.push({ role: "assistant", content: refusalReply });
-    return;
-  }
-
-  const reflectiveReply = getReflectiveReply(userText);
-  if (reflectiveReply) {
-    addMessage(reflectiveReply, "ai");
-    conversationHistory.push({ role: "assistant", content: reflectiveReply });
     return;
   }
 
